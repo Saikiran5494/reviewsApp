@@ -20,28 +20,26 @@ class ReviewsCarousel extends Component {
     }
   }
 
-  getCurrentReview = index => {
-    const {reviewsList} = this.props
-    return reviewsList[index]
-  }
-
   render() {
     const {index} = this.state
-    const {imgUrl, username, companyName, description} = this.getCurrentReview(
-      index,
-    )
+    const {reviewsList} = this.props
+    const {imgUrl, username, companyName, description} = reviewsList[index]
 
     return (
       <div className="bg-container">
         <h1 className="heading">Reviews</h1>
         <img src={imgUrl} alt={username} className="image" />
         <div className="icon-container">
-          <button type="button" className="icon-button" data-testid="leftArrow">
+          <button
+            type="button"
+            className="icon-button"
+            data-testid="leftArrow"
+            onClick={this.leftArrowClicked}
+          >
             <img
               src="https://assets.ccbp.in/frontend/react-js/left-arrow-img.png"
               alt="left arrow"
               className="icon"
-              onClick={this.leftArrowClicked}
             />
           </button>
           <div className="details">
@@ -52,12 +50,12 @@ class ReviewsCarousel extends Component {
             type="button"
             className="icon-button"
             data-testid="rightArrow"
+            onClick={this.rightArrowClicked}
           >
             <img
               src="https://assets.ccbp.in/frontend/react-js/right-arrow-img.png"
               alt="right arrow"
               className="icon"
-              onClick={this.rightArrowClicked}
             />
           </button>
         </div>
